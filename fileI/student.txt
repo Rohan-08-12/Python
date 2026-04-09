@@ -1,0 +1,3 @@
+Alice,25,A
+Bob,30,B
+Charlie,22,A

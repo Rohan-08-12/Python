@@ -92,3 +92,27 @@ def delete_user(username:str):
         status_code=status.HTTP_404_NOT_FOUND,
         detail=f"User '{username}' not found"
     )      
+
+
+
+# Custom Error Message
+
+app.get("/items")
+def create_item(name:str,price:float):
+    if price < 0:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Price cannot be negative",
+            headers={"X-Error":"Invalid-Price"}
+        )
+
+    if len(name) <3:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Name must be at least 3 characters"
+        )
+
+    return {"name":name,"price":price}        
+
+
+
